@@ -1,0 +1,68 @@
+/* Docent overlay — sits above the scene, below the nav. Tokens come from styles.css. */
+.docent {
+  position: fixed; inset: 0; z-index: 40;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: radial-gradient(80% 70% at 50% 50%, rgba(10, 10, 11, .55), rgba(10, 10, 11, .82));
+  animation: docent-in .35s ease-out both;
+}
+.docent[hidden] { display: none; }
+@keyframes docent-in { from { opacity: 0 } to { opacity: 1 } }
+
+.docent-card {
+  position: relative;
+  width: min(560px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--gold);
+  padding: 30px 32px 26px;
+  color: var(--bone);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .8);
+}
+.docent-x {
+  position: absolute; top: 12px; right: 12px;
+  background: none; border: 0; color: var(--mute); font-size: 15px; cursor: pointer; padding: 6px 8px;
+}
+.docent-x:hover, .docent-x:focus-visible { color: var(--bone); outline: 1px solid var(--gold); }
+
+.docent-eyebrow {
+  margin: 0 0 6px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+}
+.docent-title {
+  margin: 0 0 12px; font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: .01em;
+}
+.docent-line { margin: 0 0 8px; color: #D9D3C7; font-size: 15px; line-height: 1.6; max-width: 48ch; }
+
+.docent-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+.docent-dots { display: flex; gap: 8px; }
+.docent-dot {
+  width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--mute); background: transparent; padding: 0; cursor: pointer;
+}
+.docent-dot.is-on { background: var(--gold); border-color: var(--gold); }
+.docent-dot:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+.docent-actions { display: flex; gap: 10px; }
+.docent-btn {
+  font: 500 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--bone); background: transparent; border: 1px solid var(--line);
+  padding: 12px 16px; cursor: pointer; transition: border-color .15s, background .15s, color .15s;
+}
+.docent-btn:hover, .docent-btn:focus-visible { border-color: var(--gold); outline: none; }
+.docent-btn.is-primary { background: var(--gold); color: #120E06; border-color: var(--gold); }
+.docent-btn.is-primary:hover { background: #d9b97c; }
+
+.docent-list { list-style: none; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px 14px; counter-reset: space; }
+.docent-list li { counter-increment: space; }
+.docent-list button {
+  width: 100%; text-align: left; background: none; border: 0; color: #D9D3C7; cursor: pointer;
+  font: 400 14px/1.4 var(--body); padding: 6px 0; display: flex; gap: 10px; align-items: baseline;
+}
+.docent-list button::before { content: counter(space, decimal-leading-zero); font-size: 10px; letter-spacing: .1em; color: var(--gold); }
+.docent-list button:hover, .docent-list button:focus-visible { color: var(--bone); outline: none; text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 480px) {
+  .docent-card { padding: 24px 20px 20px; }
+  .docent-title { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .docent { animation: none; } }

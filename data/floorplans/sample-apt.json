@@ -1,0 +1,124 @@
+{
+  "$schema": "../../schema/floorplan.schema.json",
+  "version": 1,
+  "meta": {
+    "id": "sample-apt",
+    "title": "Sample Apartment",
+    "subtitle": "A rough-sketch two-bedroom, drawn to test the plan renderer",
+    "units": "ft",
+    "north": 0,
+    "source": "sketch",
+    "confidence": "rough",
+    "captured": "2026-09-02",
+    "author": "Shannon",
+    "notes": "Placeholder geometry. Walls are drawn on centerlines and space polygons follow the centerlines too, so areas read ~3% high. Replace with the Apt D measured plan once the capture protocol has been run."
+  },
+  "levels": [
+    {
+      "id": "L1",
+      "name": "Main level",
+      "elevation": 0,
+      "ceiling": 8,
+      "walls": [
+        { "id": "ext-s", "from": [0, 0],   "to": [36, 0],  "thickness": 0.5, "exterior": true },
+        { "id": "ext-e", "from": [36, 0],  "to": [36, 26], "thickness": 0.5, "exterior": true },
+        { "id": "ext-n", "from": [36, 26], "to": [0, 26],  "thickness": 0.5, "exterior": true },
+        { "id": "ext-w", "from": [0, 26],  "to": [0, 0],   "thickness": 0.5, "exterior": true },
+
+        { "id": "i-liv-kit",   "from": [18, 0],  "to": [18, 10] },
+        { "id": "i-kit-hall",  "from": [18, 10], "to": [28, 10] },
+        { "id": "i-kit-ent",   "from": [28, 0],  "to": [28, 10] },
+        { "id": "i-mid",       "from": [0, 14],  "to": [36, 14] },
+        { "id": "i-bed1-bath", "from": [15, 14], "to": [15, 26] },
+        { "id": "i-bath-clos", "from": [15, 22], "to": [21, 22] },
+        { "id": "i-bath-bed2", "from": [21, 14], "to": [21, 26] }
+      ],
+      "openings": [
+        { "id": "win-liv-s1", "wall": "ext-s", "type": "window", "at": 3,  "width": 6 },
+        { "id": "win-liv-s2", "wall": "ext-s", "type": "window", "at": 11, "width": 4 },
+        { "id": "win-kit-s",  "wall": "ext-s", "type": "window", "at": 21, "width": 4, "sill": 3.5, "height": 6 },
+        { "id": "door-front", "wall": "ext-e", "type": "door",   "at": 3,  "width": 3, "swing": "in-left" },
+        { "id": "win-bed2-e", "wall": "ext-e", "type": "window", "at": 17, "width": 6 },
+        { "id": "win-bed2-n", "wall": "ext-n", "type": "window", "at": 5,  "width": 6 },
+        { "id": "win-bed1-n", "wall": "ext-n", "type": "window", "at": 26, "width": 6 },
+        { "id": "win-bed1-w", "wall": "ext-w", "type": "window", "at": 3,  "width": 6 },
+        { "id": "win-liv-w",  "wall": "ext-w", "type": "window", "at": 16, "width": 6 },
+
+        { "id": "open-liv-kit",  "wall": "i-liv-kit",   "type": "cased", "at": 2,    "width": 6 },
+        { "id": "open-kit-hall", "wall": "i-kit-hall",  "type": "cased", "at": 6,    "width": 3 },
+        { "id": "door-kit-ent",  "wall": "i-kit-ent",   "type": "door",  "at": 6,    "width": 3,   "swing": "out-left" },
+        { "id": "door-bed1",     "wall": "i-mid",       "type": "door",  "at": 11.5, "width": 3,   "swing": "in-left" },
+        { "id": "door-bath",     "wall": "i-mid",       "type": "door",  "at": 18.5, "width": 2.5, "swing": "in-right" },
+        { "id": "door-bed2",     "wall": "i-mid",       "type": "door",  "at": 22,   "width": 3,   "swing": "in-left" },
+        { "id": "door-closet",   "wall": "i-bed1-bath", "type": "bifold","at": 8.5,  "width": 2.5 }
+      ],
+      "spaces": [
+        {
+          "id": "entry", "name": "Entry & Hall", "kind": "entry", "floor": "tile",
+          "polygon": [[28, 0], [36, 0], [36, 14], [18, 14], [18, 10], [28, 10]],
+          "camera": { "eye": [34, 4, 5.3], "look": [22, 11, 3.8] }
+        },
+        {
+          "id": "living", "name": "Living Room", "kind": "living", "floor": "wood",
+          "polygon": [[0, 0], [18, 0], [18, 14], [0, 14]],
+          "camera": { "eye": [16.5, 2, 5.3], "look": [4, 9, 3.4] }
+        },
+        {
+          "id": "kitchen", "name": "Kitchen", "kind": "kitchen", "floor": "tile",
+          "polygon": [[18, 0], [28, 0], [28, 10], [18, 10]],
+          "camera": { "eye": [26.5, 9, 5.3], "look": [20, 1.5, 3.2] }
+        },
+        {
+          "id": "bedroom-1", "name": "Primary Bedroom", "kind": "bedroom", "floor": "carpet",
+          "polygon": [[0, 14], [15, 14], [15, 26], [0, 26]],
+          "camera": { "eye": [13, 15.5, 5.3], "look": [4, 22.5, 3.2] }
+        },
+        {
+          "id": "bath", "name": "Bath", "kind": "bath", "floor": "tile",
+          "polygon": [[15, 14], [21, 14], [21, 22], [15, 22]],
+          "camera": { "eye": [20.3, 14.7, 5.4], "look": [16.3, 21, 2.4], "fov": 68 }
+        },
+        {
+          "id": "closet", "name": "Walk-in Closet", "kind": "closet", "floor": "carpet",
+          "polygon": [[15, 22], [21, 22], [21, 26], [15, 26]]
+        },
+        {
+          "id": "bedroom-2", "name": "Second Bedroom", "kind": "bedroom", "floor": "carpet",
+          "polygon": [[21, 14], [36, 14], [36, 26], [21, 26]],
+          "camera": { "eye": [23, 15.5, 5.3], "look": [32, 23, 3.2] }
+        }
+      ],
+      "fixtures": [
+        { "id": "sofa",      "type": "sofa",        "at": [7, 9],       "size": [7, 3],     "height": 2.6, "space": "living" },
+        { "id": "tv",        "type": "tv",          "at": [7, 1.2],     "size": [5, 0.8],   "height": 2.2, "space": "living" },
+        { "id": "dining",    "type": "table",       "at": [14, 7],      "size": [4, 3],     "height": 2.5, "space": "living", "label": "Dining" },
+        { "id": "kit-run",   "type": "kitchen-run", "at": [23, 1.25],   "size": [9, 2.5],   "height": 3,   "space": "kitchen" },
+        { "id": "range",     "type": "range",       "at": [21, 1.25],   "size": [2.5, 2.5], "height": 3,   "space": "kitchen" },
+        { "id": "fridge",    "type": "fridge",      "at": [26.4, 8.4],  "size": [3, 2.8],   "height": 5.8, "space": "kitchen" },
+        { "id": "bed1",      "type": "bed-queen",   "at": [5.5, 21.5],  "size": [5, 6.7],   "height": 2,   "space": "bedroom-1" },
+        { "id": "dresser1",  "type": "dresser",     "at": [12, 24.8],   "size": [5, 1.7],   "height": 2.8, "space": "bedroom-1" },
+        { "id": "toilet",    "type": "toilet",      "at": [16.4, 20.6], "size": [1.6, 2.3], "height": 2.5, "space": "bath" },
+        { "id": "vanity",    "type": "vanity",      "at": [16.8, 15.4], "size": [3, 1.8],   "height": 3,   "space": "bath" },
+        { "id": "tub",       "type": "tub",         "at": [19.7, 18],   "size": [2.5, 5],   "height": 1.7, "space": "bath" },
+        { "id": "rod",       "type": "closet-rod",  "at": [18, 25.2],   "size": [6, 1.4],   "height": 6,   "space": "closet" },
+        { "id": "bed2",      "type": "bed-queen",   "at": [28.5, 21.5], "size": [5, 6.7],   "height": 2,   "space": "bedroom-2" },
+        { "id": "desk2",     "type": "desk",        "at": [34.6, 18.5], "size": [1.8, 4],   "height": 2.5, "space": "bedroom-2" }
+      ]
+    }
+  ],
+  "tour": [
+    { "space": "entry",     "title": "Come in",          "caption": "Every visit starts at the door. The hall pulls you toward the light in the living room." },
+    { "space": "living",    "title": "Living Room",      "caption": "Two south windows and one west — this is the room the afternoon belongs to.",
+      "via": [[30, 12, 5.3], [19, 12, 5.3]] },
+    { "space": "kitchen",   "title": "Kitchen",          "caption": "Open to the living room through a wide cased opening; a second way in from the hall.",
+      "via": [[16, 5, 5.3], [19.5, 5, 5.3]] },
+    { "space": "bedroom-1", "title": "Primary Bedroom",  "caption": "Corner room, two exposures, walk-in closet behind the bath.",
+      "via": [[25.5, 10.5, 5.3], [19.5, 12, 5.3], [13, 13, 5.3], [13, 15, 5.3]] },
+    { "space": "bath",      "title": "Bath",             "caption": "Tub along the far wall, vanity by the door.",
+      "via": [[13, 13, 5.3], [19.75, 12.5, 5.3], [19.75, 14.2, 5.3]] },
+    { "space": "bedroom-2", "title": "Second Bedroom",   "caption": "East light in the morning. Big enough for a desk under the window.",
+      "via": [[19.75, 12.5, 5.3], [23.5, 12.5, 5.3], [23.5, 14.5, 5.3]] },
+    { "space": "living",    "title": "The whole place",  "caption": "Pull back and the plan reads at a glance — that is the point of building it in 3D.",
+      "via": [[27, 20, 14], [24, 4, 30]], "camera": { "eye": [18, -22, 48], "look": [18, 13, 0], "fov": 50 }, "hold": 1.5 }
+  ]
+}

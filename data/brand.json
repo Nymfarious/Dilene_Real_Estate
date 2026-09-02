@@ -1,0 +1,38 @@
+{
+  "_comment": "Single source of truth for everything the site says about Dilene. All values are from her public pages (dilenerealtydfw.com, dileneallen.exprealty.com) as of 2026-09-02. Nothing here is invented; if it is not public, it does not go in this file.",
+  "agent": "Dilene Allen",
+  "designations": ["REALTOR®", "GRI", "MBA"],
+  "team": "Dilene Realty Group",
+  "brokerage": "eXp Realty",
+  "tagline": "Empowering You Through Real Estate",
+  "subline": "Your Trusted Partner for Real Estate & Investors",
+  "phone": "214-924-9396",
+  "phoneAlt": "682-452-7934",
+  "email": "dilenerealtygrouppc@gmail.com",
+  "office": "3330 Galloway Ste 304-160, Mesquite, TX 75150",
+  "region": "Dallas–Fort Worth",
+  "areas": ["Dallas", "Frisco", "Plano", "Cedar Hill", "Southlake", "Highland Park", "DeSoto", "Little Elm", "Mesquite"],
+  "hours": "Monday–Saturday 8:00 am–7:00 pm",
+  "yearsInIndustry": 5,
+  "services": ["Buying", "Selling", "Investing", "Property management", "Financing", "Tax planning"],
+  "social": {
+    "facebook": "https://facebook.com/dilenerealtygrouppc",
+    "instagram": "https://instagram.com/iamdileneallen",
+    "instagramTeam": "https://instagram.com/dilenerealtygroup2",
+    "youtube": "https://www.youtube.com/channel/UCYi4K9XM9CBnHNL5xEPu-Ow",
+    "linkedin": "https://www.linkedin.com/in/dilene-realty-group-24578b202",
+    "tiktok": "https://www.tiktok.com/@dilenerealtygroup"
+  },
+  "links": {
+    "site": "https://www.dilenerealtydfw.com/",
+    "brokeragePage": "https://dileneallen.exprealty.com/agents/302858/Dilene+Allen"
+  },
+  "compliance": {
+    "_comment": "Texas license holders must post both notices on the business homepage with these exact labels (TREC). IABS must point at HER completed IABS form, not the blank TREC template — replace before this goes anywhere public.",
+    "iabsLabel": "Texas Real Estate Commission Information About Brokerage Services",
+    "iabsUrl": "https://www.trec.texas.gov/forms/information-about-brokerage-services",
+    "cpnLabel": "Texas Real Estate Commission Consumer Protection Notice",
+    "cpnUrl": "https://www.trec.texas.gov/forms/consumer-protection-notice"
+  },
+  "notice": "Concept preview built as a gift. Not an official Dilene Realty Group or eXp Realty website."
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dilene Realty Group — Walkthrough</title>
+  <meta name="description" content="A property you can walk through by scrolling. Concept preview built as a gift.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Karla:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap">
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div id="veil" aria-hidden="true"></div>
+
+  <div class="notice" id="notice"></div>
+
+  <nav class="top" aria-label="Site">
+    <a class="mark" href="/"><span id="brand-team">DILENE REALTY GROUP</span><small id="brand-tagline">Empowering You Through Real Estate</small></a>
+    <div class="nav-right">
+      <span id="brand-brokerage">eXp Realty</span>
+      <a class="phone" id="brand-phone" href="#">214-924-9396</a>
+      <a href="/plan/" title="See the floor plan">Plan</a>
+      <button class="btn-tour" id="btn-tour" type="button">Tour</button>
+    </div>
+  </nav>
+
+  <!-- Scroll track: one section per tour stop, filled in by main.ts -->
+  <main id="doc" aria-label="Walkthrough"></main>
+
+  <aside class="caption is-hidden" id="caption" aria-live="polite">
+    <p class="eyebrow" id="cap-eyebrow">01 / 07</p>
+    <h2 id="cap-title">Come in</h2>
+    <p id="cap-text"></p>
+    <p class="hint">Scroll to move · Tour for the guide</p>
+  </aside>
+
+  <div class="rail" id="rail" aria-label="Spaces"></div>
+
+  <footer class="contact">
+    <div class="contact-grid">
+      <div>
+        <h3>Dilene Allen</h3>
+        <p class="script">Empowering You Through Real Estate</p>
+        <dl>
+          <dt>Team</dt><dd>Dilene Realty Group · eXp Realty</dd>
+          <dt>Call</dt><dd><a href="tel:+12149249396">214-924-9396</a></dd>
+          <dt>Email</dt><dd><a href="mailto:dilenerealtygrouppc@gmail.com">dilenerealtygrouppc@gmail.com</a></dd>
+          <dt>Office</dt><dd>3330 Galloway Ste 304-160, Mesquite, TX 75150</dd>
+          <dt>Hours</dt><dd>Monday–Saturday 8:00 am–7:00 pm</dd>
+        </dl>
+      </div>
+      <div>
+        <dl>
+          <dt>Serving</dt><dd>Dallas–Fort Worth</dd>
+        </dl>
+        <div class="areas">
+          <span>Dallas</span><span>Frisco</span><span>Plano</span><span>Cedar Hill</span><span>Southlake</span>
+          <span>Highland Park</span><span>DeSoto</span><span>Little Elm</span><span>Mesquite</span>
+        </div>
+      </div>
+      <div>
+        <dl>
+          <dt>Elsewhere</dt>
+          <dd><a href="https://www.dilenerealtydfw.com/" rel="noopener">dilenerealtydfw.com</a></dd>
+          <dt></dt>
+          <dd><a href="https://dileneallen.exprealty.com/agents/302858/Dilene+Allen" rel="noopener">eXp Realty profile</a></dd>
+          <dt></dt>
+          <dd><a href="https://instagram.com/iamdileneallen" rel="noopener">Instagram</a> · <a href="https://facebook.com/dilenerealtygrouppc" rel="noopener">Facebook</a> · <a href="https://www.tiktok.com/@dilenerealtygroup" rel="noopener">TikTok</a></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="legal">
+      <span>Dilene Allen, REALTOR®, GRI, MBA · eXp Realty</span>
+      <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
+      <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
