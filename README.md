@@ -60,4 +60,4 @@ Then in Vercel: **Add New → Project → Import** this repo. Framework auto-det
 - Keep `main` deployable. Branches for experiments.
 
 ---
-Private. Built with care, September 2026.
+Apache-2.0 (LICENSE). Built with care, September 2026.
