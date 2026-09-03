@@ -14,3 +14,8 @@ capture/**/*.heic
 capture/**/*.mov
 capture/**/*.mp4
 !capture/**/small/*.jpg
+
+# local-only: raw source material and the manual drop folder
+_archive/
+_INBOX D/*
+!_INBOX D/README.md
