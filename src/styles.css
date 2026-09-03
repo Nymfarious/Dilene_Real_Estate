@@ -100,3 +100,24 @@ footer.contact {
   .nav-right .phone { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .caption { transition: none; } }
+
+/* ---- Explore: the visitor has the camera ----
+   The scroll furniture is the tour's; hide it while the orbit is live so the
+   house is the only thing on screen. The notice bar and nav stay, always. */
+body.is-exploring #doc { pointer-events: none; }
+body.is-exploring .caption,
+body.is-exploring .rail { opacity: 0; pointer-events: none; }
+body.is-exploring #gl { touch-action: none; }
+body.is-exploring .explore-hint { opacity: 1; }
+.caption, .rail { transition: opacity .35s ease; }
+
+.explore-hint {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%);
+  z-index: 10; opacity: 0; pointer-events: none; transition: opacity .35s ease;
+  font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+}
+#btn-explore[aria-pressed="true"] { border-color: var(--gold); color: var(--bone); }
+
+@media (prefers-reduced-motion: reduce) {
+  .caption, .rail, .explore-hint { transition: none; }
+}

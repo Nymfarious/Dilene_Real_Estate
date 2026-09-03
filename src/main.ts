@@ -14,6 +14,7 @@ import type { Floorplan } from "./types/floorplan";
 import { createScene, makeLot } from "./scene/createScene";
 import { buildHouse } from "./scene/house";
 import { CameraRig } from "./scene/cameraRig";
+import { Explore } from "./scene/explore";
 import { Docent } from "./docent/Docent";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -91,10 +92,43 @@ ScrollTrigger.create({
 });
 
 function goTo(i: number) {
+  if (mode === "explore") exitExplore();
   const p = rig.progressOf(i);
   const max = doc.offsetHeight - window.innerHeight;
   lenis.scrollTo(Math.max(0, Math.min(max, p * max)), { duration: 1.6, easing: (x) => 1 - Math.pow(1 - x, 3) });
 }
+
+/* ---------------- Explore: the camera, handed over ---------------- */
+const explore = new Explore(kit.camera, canvas, house.bounds);
+let mode: "tour" | "explore" = "tour";
+const btnExplore = $<HTMLButtonElement>("#btn-explore");
+
+function enterExplore() {
+  if (mode === "explore") return;
+  mode = "explore";
+  lenis.stop();                       // the wheel belongs to the orbit now
+  explore.enable();
+  document.body.classList.add("is-exploring");
+  btnExplore.textContent = "Back to tour";
+  btnExplore.setAttribute("aria-pressed", "true");
+}
+
+function exitExplore() {
+  if (mode !== "explore") return;
+  mode = "tour";
+  explore.disable();
+  lenis.start();
+  document.body.classList.remove("is-exploring");
+  btnExplore.textContent = "Explore";
+  btnExplore.setAttribute("aria-pressed", "false");
+  // The rig still holds the scroll position's target, so its own easing
+  // walks the camera back onto the rails — no cut.
+}
+
+btnExplore.addEventListener("click", () => (mode === "explore" ? exitExplore() : enterExplore()));
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && mode === "explore") exitExplore();
+});
 
 /* ---------------- Docent ---------------- */
 const docent = new Docent({
@@ -119,10 +153,12 @@ if (!opened) showCaption(0);
 const clock = new THREE.Clock();
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
-  rig.update(dt);
-  // Dollhouse reveal: ceilings fade out as the eye rises above them.
+  if (mode === "explore") explore.update(dt);
+  else rig.update(dt);
+  // Dollhouse reveal: ceilings fade out as the eye rises above them. Read the
+  // height off the camera itself so it works whichever mode is driving.
   const h = level.ceiling ?? 8;
-  house.ceilingMaterial.opacity = THREE.MathUtils.clamp((h + 1.5 - rig.eyeHeight) / 2.5, 0, 1);
+  house.ceilingMaterial.opacity = THREE.MathUtils.clamp((h + 1.5 - kit.camera.position.y) / 2.5, 0, 1);
   house.ceilingMaterial.visible = house.ceilingMaterial.opacity > 0.02;
   kit.renderer.render(kit.scene, kit.camera);
   requestAnimationFrame(frame);
