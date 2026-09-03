@@ -19,3 +19,7 @@ capture/**/*.mp4
 _archive/
 _INBOX D/*
 !_INBOX D/README.md
+
+# agent skills: restore with `npx skills add` from skills-lock.json
+.agents/
+.claude/skills/
