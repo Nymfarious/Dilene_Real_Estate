@@ -1,0 +1,172 @@
+/* Mantis — the report affordance. Quiet until wanted, then plain and legible.
+   Uses the site's own tokens so it never reads as a bolted-on widget. */
+
+.mantis {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 40; /* above the rail, below the docent card */
+  font-family: var(--body);
+}
+
+/* ---- the mark ---- */
+
+.mantis-fab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--mute);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.42;
+  transition: opacity 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.mantis-fab svg { width: 17px; height: 17px; flex: none; }
+.mantis-fab:hover,
+.mantis-fab:focus-visible {
+  opacity: 1;
+  color: var(--bone);
+  border-color: var(--brass);
+  outline: none;
+}
+.mantis.is-open .mantis-fab { opacity: 1; color: var(--gold); border-color: var(--gold); }
+
+/* ---- the panel ---- */
+
+.mantis-panel {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  width: min(380px, calc(100vw - 44px));
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.8);
+  color: var(--bone);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.mantis-head { position: relative; margin-bottom: 14px; }
+.mantis-eyebrow {
+  margin: 0 0 4px;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.mantis-head h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 21px;
+  color: var(--bone);
+}
+.mantis-x {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: none;
+  color: var(--mute);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.mantis-x:hover, .mantis-x:focus-visible { color: var(--bone); outline: none; }
+
+.mantis-field { display: block; margin-bottom: 12px; }
+.mantis-field > span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.mantis-field textarea,
+.mantis-field select {
+  width: 100%;
+  padding: 9px 10px;
+  background: var(--char);
+  border: 1px solid var(--line);
+  color: var(--bone);
+  font-family: var(--body);
+  font-size: 13.5px;
+  border-radius: 2px;
+  resize: vertical;
+}
+.mantis-field textarea:focus,
+.mantis-field select:focus { outline: none; border-color: var(--brass); }
+.mantis-field textarea::placeholder { color: color-mix(in srgb, var(--mute) 70%, transparent); }
+
+.mantis-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.mantis-shot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 10px;
+  font-size: 12px;
+  color: var(--mute);
+  cursor: pointer;
+}
+.mantis-shot input { accent-color: var(--gold); }
+
+.mantis-preview {
+  margin: 0 0 12px;
+  border: 1px solid var(--line);
+  line-height: 0;
+  background: var(--ink);
+}
+.mantis-preview img { width: 100%; height: auto; display: block; }
+
+.mantis-status {
+  min-height: 1.2em;
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--gold);
+}
+
+.mantis-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.mantis-actions button {
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--mute);
+  font-family: var(--body);
+  font-size: 10.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.mantis-actions button:hover:not(:disabled),
+.mantis-actions button:focus-visible { color: var(--bone); border-color: var(--brass); outline: none; }
+.mantis-send { border-color: var(--brass) !important; color: var(--bone) !important; }
+.mantis-send:hover:not(:disabled) { background: var(--brass); }
+.mantis-actions button:disabled { opacity: 0.5; cursor: default; }
+.mantis-dl { margin-right: auto; }
+
+/* Never compete with the docent's first impression. The Docent toggles its
+   own `hidden` attribute, so key off that rather than a class nobody sets. */
+body:has(.docent:not([hidden])) .mantis { display: none; }
+
+@media (max-width: 820px) {
+  .mantis { left: 14px; bottom: 14px; }
+  .mantis-fab span { display: none; }
+  .mantis-fab { padding: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mantis-fab { transition: none; }
+}

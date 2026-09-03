@@ -12,5 +12,6 @@ The documents that define this project. Read in this order the first time.
 | [`stack-and-keys.md`](stack-and-keys.md) | The stack, every key/account by milestone, the Cesium answer, and what's missing. |
 | [`offerings.md`](offerings.md) | The two products (walkthrough · 360° tour), the two ingest tiers, and what they share. |
 | [`vendor-notes.md`](vendor-notes.md) | Tools evaluated, adopted or rejected, and the tool-vs-dependency rule. |
+| [`mantis.md`](mantis.md) | The report button: what it captures, how it delivers, how to switch on live delivery. |
 
 Changing a convention means changing the doc first, then the code. If a doc and the code disagree, the doc wins and the code is a bug.

@@ -1,9 +1,12 @@
 import { defineConfig } from "vite";
+import { mantisInboxBridge } from "./vite-plugins/mantisInboxBridge";
 
 // Two entry points, one codebase:
 //   /        — the Reveal (Milestone 1): scroll-driven 3D walkthrough with the Docent overlay
 //   /plan/   — the stylized floor plan viewer (same renderer the CLI uses)
 export default defineConfig({
+  // Dev-only: writes in-app Mantis reports to docs/inbox/. No-ops in a build.
+  plugins: [mantisInboxBridge()],
   build: {
     target: "es2022",
     rollupOptions: {

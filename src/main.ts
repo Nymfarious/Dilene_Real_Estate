@@ -3,6 +3,7 @@
  */
 import "./styles.css";
 import "./docent/docent.css";
+import "./mantis/mantis.css";
 import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,6 +17,7 @@ import { buildHouse } from "./scene/house";
 import { CameraRig } from "./scene/cameraRig";
 import { Explore } from "./scene/explore";
 import { Docent } from "./docent/Docent";
+import { Mantis } from "./mantis/Mantis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +77,8 @@ kit.scene.add(house.group);
 kit.scene.add(makeLot(house.bounds));
 
 const rig = new CameraRig(plan, kit.camera);
-rig.onStopChange = (i) => { showCaption(i); docent.setActive(i); };
+let currentStop = 0;
+rig.onStopChange = (i) => { currentStop = i; showCaption(i); docent.setActive(i); };
 
 /* ---------------- scroll ---------------- */
 const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
@@ -149,10 +152,69 @@ $("#btn-tour").addEventListener("click", () => docent.open());
 const opened = docent.openUnlessDismissed();
 if (!opened) showCaption(0);
 
+/* ---------------- Mantis: report a problem ---------------- */
+// Screenshot comes straight off the WebGL canvas: render, then read the
+// buffer in the same task before the browser clears it. No getDisplayMedia,
+// so no permission prompt and no chance of catching the visitor's other
+// windows. Downscaled to 1280 and JPEG-encoded to stay well inside the
+// bridge's 5 MB cap — a raw 1440×900 PNG is ~1 MB on its own.
+function captureFrame(): string | undefined {
+  try {
+    kit.renderer.render(kit.scene, kit.camera);
+    const src = kit.renderer.domElement;
+    const scale = Math.min(1, 1280 / src.width);
+    const off = document.createElement("canvas");
+    off.width = Math.round(src.width * scale);
+    off.height = Math.round(src.height * scale);
+    const ctx = off.getContext("2d");
+    if (!ctx) return undefined;
+    ctx.drawImage(src, 0, 0, off.width, off.height);
+    return off.toDataURL("image/jpeg", 0.8);
+  } catch {
+    return undefined; // tainted canvas or lost context — send the note alone
+  }
+}
+
+let fps = 0;
+new Mantis({
+  mount: document.body,
+  capture: captureFrame,
+  context: () => {
+    const gl = kit.renderer.getContext();
+    const dbg = gl.getExtension("WEBGL_debug_renderer_info");
+    let meshCount = 0;
+    house.group.traverse((o) => { if ((o as THREE.Mesh).isMesh) meshCount++; });
+    const stop = stops[currentStop];
+    return {
+      view: "reveal",
+      mode,
+      ...(stop ? { tourStop: { index: currentStop, space: stop.space, title: stop.title ?? stop.space } } : {}),
+      plan: { id: plan.meta.id, title: plan.meta.title },
+      gl: {
+        renderer: String(dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER)),
+        vendor: String(dbg ? gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR)),
+        version: String(gl.getParameter(gl.VERSION)),
+      },
+      viewport: { w: window.innerWidth, h: window.innerHeight, dpr: Math.round(window.devicePixelRatio * 100) / 100 },
+      fps: Math.round(fps),
+      meshCount,
+      fontsLoaded: document.fonts?.check?.('500 16px "Bodoni Moda"') ?? undefined,
+      // Whether this visitor was shown the intro card on arrival. Not "is it
+      // open now" — Mantis hides itself while the docent is up, so that would
+      // always read false and tell us nothing.
+      docentShownOnLoad: opened,
+    };
+  },
+});
+
 /* ---------------- render loop ---------------- */
 const clock = new THREE.Clock();
+let fpsAccum = 0, fpsFrames = 0;
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
+  // Rolling 1s average, so a Mantis report carries a real number.
+  fpsAccum += dt; fpsFrames++;
+  if (fpsAccum >= 1) { fps = fpsFrames / fpsAccum; fpsAccum = 0; fpsFrames = 0; }
   if (mode === "explore") explore.update(dt);
   else rig.update(dt);
   // Dollhouse reveal: ceilings fade out as the eye rises above them. Read the
