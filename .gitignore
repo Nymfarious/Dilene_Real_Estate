@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.vercel/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+out/
+capture/**/*.jpg
+capture/**/*.jpeg
+capture/**/*.png
+capture/**/*.heic
+capture/**/*.mov
+capture/**/*.mp4
+!capture/**/small/*.jpg
+
+# local-only: raw source material and the manual drop folder
+_archive/
+_INBOX D/*
+!_INBOX D/README.md
+
+# agent skills: restore with `npx skills add` from skills-lock.json
+.agents/
+.claude/skills/

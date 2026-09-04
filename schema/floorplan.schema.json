@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Nymfarious/Dilene_Real_Estate/schema/floorplan.schema.json",
+  "title": "floorplan.json — canonical property plan (v1)",
+  "description": "One property, one file. Plan coordinates are in feet, X grows east (right), Y grows north (up the page), origin at the south-west corner of the exterior envelope. Heights are feet above the level's finished floor. The same file drives the stylized 2D plan and the 3D walkthrough.",
+  "type": "object",
+  "required": ["version", "meta", "levels"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 1 },
+    "meta": {
+      "type": "object",
+      "required": ["id", "title", "units", "source", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Slug. Also the file name." },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string", "description": "e.g. city, or 'Unit D'. Never a street address unless the owner has agreed to publish it." },
+        "units": { "const": "ft", "description": "v1 is feet only. Store inches as decimals (6\" = 0.5)." },
+        "north": { "type": "number", "minimum": 0, "exclusiveMaximum": 360, "default": 0, "description": "Degrees clockwise from +Y to true north. 0 = the top of the page is north." },
+        "source": { "enum": ["sketch", "measured", "scan", "listing"], "description": "How the geometry was obtained. 'listing' = traced from a listing floor plan image." },
+        "confidence": { "enum": ["rough", "measured", "surveyed"], "description": "rough = ±1 ft, measured = ±2 in, surveyed = professional." },
+        "captured": { "type": "string", "format": "date" },
+        "author": { "type": "string" },
+        "notes": { "type": "string" },
+        "attribution": { "type": "string", "description": "Where the source imagery/plan came from, if not shot by the author." }
+      }
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/level" }
+    },
+    "tour": {
+      "type": "array",
+      "description": "Ordered stops for the Docent and the 3D camera. Each stop names a space; the space's own camera is used unless overridden here.",
+      "items": {
+        "type": "object",
+        "required": ["space"],
+        "additionalProperties": false,
+        "properties": {
+          "space": { "type": "string" },
+          "title": { "type": "string" },
+          "caption": { "type": "string", "maxLength": 240 },
+          "camera": { "$ref": "#/$defs/camera" },
+          "via": { "type": "array", "items": { "$ref": "#/$defs/point3" }, "description": "Waypoints the camera passes through on the way to this stop, in order — put one in each doorway so the path never cuts through a wall." },
+          "hold": { "type": "number", "minimum": 0, "default": 1, "description": "Relative dwell weight for the scroll timeline." }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2,
+      "description": "[x, y] in feet on the plan."
+    },
+    "point3": {
+      "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3,
+      "description": "[x, y, h]: plan x, plan y, height above finished floor — all feet."
+    },
+    "camera": {
+      "type": "object",
+      "required": ["eye", "look"],
+      "additionalProperties": false,
+      "properties": {
+        "eye": { "$ref": "#/$defs/point3" },
+        "look": { "$ref": "#/$defs/point3" },
+        "fov": { "type": "number", "minimum": 20, "maximum": 100, "default": 55 }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": ["id", "name", "walls", "spaces"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9-]+$" },
+        "name": { "type": "string" },
+        "elevation": { "type": "number", "default": 0, "description": "Finished-floor height above grade, feet." },
+        "ceiling": { "type": "number", "default": 8, "description": "Default ceiling height for the level, feet." },
+        "walls": { "type": "array", "items": { "$ref": "#/$defs/wall" } },
+        "openings": { "type": "array", "items": { "$ref": "#/$defs/opening" }, "default": [] },
+        "spaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/space" } },
+        "fixtures": { "type": "array", "items": { "$ref": "#/$defs/fixture" }, "default": [] }
+      }
+    },
+    "wall": {
+      "type": "object",
+      "required": ["id", "from", "to"],
+      "additionalProperties": false,
+      "description": "A straight wall segment along its centerline. Split at every corner and at every change of thickness.",
+      "properties": {
+        "id": { "type": "string" },
+        "from": { "$ref": "#/$defs/point" },
+        "to": { "$ref": "#/$defs/point" },
+        "thickness": { "type": "number", "minimum": 0.2, "maximum": 2, "default": 0.375, "description": "Feet. Interior 2x4 wall with drywall ≈ 0.375; exterior ≈ 0.5." },
+        "height": { "type": "number", "description": "Override the level ceiling for this wall (half walls, pony walls)." },
+        "exterior": { "type": "boolean", "default": false }
+      }
+    },
+    "opening": {
+      "type": "object",
+      "required": ["id", "wall", "type", "at", "width"],
+      "additionalProperties": false,
+      "description": "A cut in a wall, located by distance along the wall from its 'from' point to the near edge of the opening.",
+      "properties": {
+        "id": { "type": "string" },
+        "wall": { "type": "string", "description": "wall.id" },
+        "type": { "enum": ["door", "window", "cased", "slider", "pocket", "bifold"] },
+        "at": { "type": "number", "minimum": 0 },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "description": "Head height above floor. Default: door 6.67, window 6.67, cased = ceiling." },
+        "sill": { "type": "number", "minimum": 0, "default": 0, "description": "Bottom of the opening above floor. Windows ≈ 3; doors 0." },
+        "swing": {
+          "enum": ["in-left", "in-right", "out-left", "out-right", "none"],
+          "description": "For doors. 'in' = swings toward the wall's left side when walking from→to; hinge on the left/right edge of the opening as seen from the wall's 'from' end. Read docs/drafting-standards.md before guessing."
+        }
+      }
+    },
+    "space": {
+      "type": "object",
+      "required": ["id", "name", "kind", "polygon"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string" },
+        "kind": { "enum": ["entry", "living", "dining", "kitchen", "bedroom", "bath", "closet", "hall", "laundry", "office", "garage", "porch", "patio", "other"] },
+        "polygon": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/point" }, "description": "Counter-clockwise, to the finished face of the walls (not the centerline)." },
+        "floor": { "enum": ["wood", "carpet", "tile", "concrete", "vinyl", "stone", "other"], "default": "wood" },
+        "ceiling": { "type": "number", "description": "Override the level ceiling for this space." },
+        "camera": { "$ref": "#/$defs/camera", "description": "Default 3D viewpoint for this space." },
+        "notes": { "type": "string" },
+        "photos": { "type": "array", "items": { "type": "string" }, "description": "Relative paths to capture photos (see capture-protocol). Never checked in above 2 MB each." }
+      }
+    },
+    "fixture": {
+      "type": "object",
+      "required": ["id", "type", "at", "size"],
+      "additionalProperties": false,
+      "description": "A placed object. 'at' is the center of its footprint; 'size' is [width, depth] before rotation.",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "enum": [
+            "sofa", "chair", "table", "bed-queen", "bed-king", "bed-twin", "dresser", "desk",
+            "kitchen-run", "island", "fridge", "range", "sink", "dishwasher",
+            "toilet", "vanity", "tub", "shower", "washer", "dryer",
+            "closet-rod", "stair", "fireplace", "tv", "plant", "other"
+          ]
+        },
+        "at": { "$ref": "#/$defs/point" },
+        "size": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 }, "minItems": 2, "maxItems": 2 },
+        "height": { "type": "number", "default": 2.5 },
+        "rotation": { "type": "number", "default": 0, "description": "Degrees counter-clockwise." },
+        "space": { "type": "string", "description": "space.id it belongs to." },
+        "asset": { "type": "string", "description": "Optional model reference, e.g. 'meshy://<id>' or a path under /public/models. Placeholder boxes are used when absent." },
+        "label": { "type": "string" }
+      }
+    }
+  }
+}
