@@ -10,3 +10,4 @@
 - Keep the brass notice bar and the two TREC links. Keep `noindex` until told otherwise.
 - No new dependencies without a line in `docs/stack-and-keys.md` saying why.
 - Never commit keys, capture photos over 2 MB, or anything from `capture/` originals.
+- End a session that decided something with an artifact, titled like an index entry and dated inside. `docs/session-artifacts.md` says why and what a good one carries.

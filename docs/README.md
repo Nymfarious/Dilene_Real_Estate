@@ -13,5 +13,6 @@ The documents that define this project. Read in this order the first time.
 | [`offerings.md`](offerings.md) | The two products (walkthrough · 360° tour), the two ingest tiers, and what they share. |
 | [`vendor-notes.md`](vendor-notes.md) | Tools evaluated, adopted or rejected, and the tool-vs-dependency rule. |
 | [`mantis.md`](mantis.md) | The report button: what it captures, how it delivers, how to switch on live delivery. |
+| [`session-artifacts.md`](session-artifacts.md) | How chat-session thinking reaches this repo, and the register that keeps it honest. |
 
 Changing a convention means changing the doc first, then the code. If a doc and the code disagree, the doc wins and the code is a bug.
