@@ -4,7 +4,7 @@ import { mantisInboxBridge } from "./vite-plugins/mantisInboxBridge";
 // Three entry points, one codebase:
 //   /        — the Reveal (Milestone 1): scroll-driven 3D walkthrough with the Docent overlay
 //   /plan/   — the stylized floor plan viewer (same renderer the CLI uses)
-//   /apt-d/  — owner-approved photo-turn and overhead-location test
+//   /property-test/ — owner-approved photo-turn and approximate-location test
 export default defineConfig({
   // Dev-only: writes in-app Mantis reports to docs/inbox/. No-ops in a build.
   plugins: [mantisInboxBridge()],
@@ -14,7 +14,7 @@ export default defineConfig({
       input: {
         main: new URL("./index.html", import.meta.url).pathname,
         plan: new URL("./plan/index.html", import.meta.url).pathname,
-        aptD: new URL("./apt-d/index.html", import.meta.url).pathname,
+        propertyTest: new URL("./property-test/index.html", import.meta.url).pathname,
       },
     },
   },

@@ -75,10 +75,10 @@ Implementation:
   application dependencies only as they become necessary.
 - Add Vitest for pure TypeScript behavior and Playwright for the two critical
   browser journeys.
-- Define fixture rules: Apt D is owner-approved test media; all missing facts
+- Define fixture rules: the private residence is owner-approved test media; all missing facts
   remain `TBD`; tests must not send email or write to a production service.
 - Add one local command that runs Python, TypeScript, browser, and build gates.
-- Preserve the existing sample 3D route and Apt D route as regression fixtures.
+- Preserve the existing sample 3D route and private-residence route as regression fixtures.
 
 Tests delivered with the phase:
 
@@ -204,7 +204,7 @@ without delaying the Matterport product.
 
 Implementation order:
 
-1. Replace the Apt D adjacent-photo concept with real equirectangular source
+1. Replace the private-residence adjacent-photo concept with real equirectangular source
    imagery when Q supplies it.
 2. Build the Python ingest pipeline: EXIF removal, dimensions/aspect checks,
    image ladder, poster crop, checksums, and manifest.

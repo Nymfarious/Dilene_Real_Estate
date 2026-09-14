@@ -31,7 +31,7 @@ So the instinct was right in spirit and slightly off in detail: the eXp page *is
 6. **The footer.** Her name, designations, brokerage, phone, email, office, hours, her cities as chips, links to her two sites and socials, and the two TREC notices with their exact required labels. This is the paragraph a realtor actually reads. Getting it right is the difference between "cute demo" and "this person understands my business."
 
 **Content**
-- Property: the sample apartment (or Apt D once measured). Say so out loud when showing it: *"This is my place. Hand me one of your listings and it's yours."* Honesty is part of the pitch.
+- Property: the sample apartment (or the owner-approved test residence once measured). Say so out loud when showing it: *"This is my place. Hand me one of your listings and it's yours."* Honesty is part of the pitch.
 - Copy: seven captions, ≤ 2 sentences each, no adjectives without a noun to hang on. Written in `data/floorplans/*.json`.
 - Brand: `data/brand.json` only. Nothing hand-typed in HTML that could drift.
 
@@ -57,7 +57,7 @@ So the instinct was right in spirit and slightly off in detail: the eXp page *is
 
 **Additions, in the order they earn their keep**
 
-1. **A real property.** Run the capture protocol on Apt D; write a measured `floorplan.json`; replace the sample. Then trace one of *her* listings from public listing photos as a second plan (`source: "listing"`, attributed). Multi-property means a small index page and `?plan=<id>` routing.
+1. **A real property.** Run the capture protocol on the owner-approved test residence; write a measured `floorplan.json`; replace the sample. Then trace one of *her* listings from public listing photos as a second plan (`source: "listing"`, attributed). Multi-property means a small index page and `?plan=<id>` routing.
 2. **Real furniture and materials.** Meshy-generated assets referenced by `fixture.asset`, loaded as glTF; floor and wall materials from capture photos. This is where the placeholder boxes stop being charming.
 3. **The zoom-out.** Her flythrough idea: bay window → room → whole home → lot → neighborhood → the DFW map with her cities lit. Ground truth comes from Cesium World Terrain and Google Photorealistic 3D Tiles streamed into Three.js by `3d-tiles-renderer` (NASA-AMMOS), keyed with a free Cesium ion token. The house sits on real terrain at its real coordinates; the pull-back keeps going. This is the moment no template can copy.
 4. **Contact that works.** "Request a private showing" form posting to a serverless function (Vercel) or Formspree; confirmation to her email. Until then, `mailto:` and `tel:` links are honest and fine.

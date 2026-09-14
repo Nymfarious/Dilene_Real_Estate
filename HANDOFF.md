@@ -92,7 +92,7 @@ PR #3 came from https://claude.ai/code/session_017hTVQePRLmgkVgH5yzPrdQ
   Zillow's compatible list if one is bought. No drone without a Part 107 certificate.
 - Virtually staged images must carry a disclosure label rendered automatically; confirm
   wording with her broker.
-- Milestone 2 order: real property (Apt D via capture protocol) → real materials →
+- Milestone 2 order: real property (owner-approved test residence via capture protocol) → real materials →
   the zoom-out on Cesium terrain via `3d-tiles-renderer` → showing-request form →
   her domain → compliance for real → optional cinematic clip layer. `docs/site-spec.md`.
 
@@ -121,7 +121,7 @@ Meshy furniture in Milestone 2. Nobody has ruled. Treat as `Open`.
    inside, would close the loop `docs/session-artifacts.md` asks for. `_archive/` is
    git-ignored and local to the owner's machine, so do not rely on it existing.
 7. **Milestone 2 starts with capture**, not code: run `docs/capture-protocol.md` on
-   Apt D and write a measured `floorplan.json`.
+   the owner-approved test residence and write a measured `floorplan.json`.
 
 ## Questions only the owner or Dilene can answer
 

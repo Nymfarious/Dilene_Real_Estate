@@ -55,7 +55,7 @@ Keys go in `.env.local` (git-ignored), prefixed `VITE_` to reach the browser. Th
 |---|---|---|
 | Push to GitHub directly | The cloud session's GitHub access is scoped to repos attached to the session; `Dilene_Real_Estate` isn't attached (403). | Attach the repo to the session in the Claude app. Then Claude can push, open PRs, and link Vercel. Until then: the zip + `git push` in the README. |
 | Link Vercel to the repo | Vercel's `create_git_project` needs the repo pushed first. | Push, then either click Import in Vercel or ask Claude to run it. |
-| See the Apt D photos | This session isn't linked to your computer; `Downloads` is invisible. | Drag the photos into the chat, or link the computer from the desktop app. |
+| See the private-residence test photos | This session isn't linked to your computer; `Downloads` is invisible. | Drag the photos into the chat, or link the computer from the desktop app. |
 | Read the other two chats | Chats don't share transcripts; only the project's shared notes carry across. | Paste any decisions from them; Claude merges. The canon docs here were drafted fresh. |
 | Render Google Fonts in the headless screenshots | The sandbox blocks font CDNs. | Cosmetic; real browsers load them. Self-hosting fixes it for good. |
 

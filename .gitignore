@@ -24,3 +24,4 @@ _INBOX D/*
 .agents/
 .claude/skills/
 .vercel
+.private/

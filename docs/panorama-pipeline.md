@@ -216,4 +216,4 @@ something that looks amateur through no fault of the code.
 Interiors are the hard case for stitching and no amount of software makes a
 sloppy capture stitch cleanly. Budget for the first two or three attempts
 failing — same expectation `capture-protocol.md` already sets, and the same
-reason Apt D is the right first subject: it can be reshot at midnight.
+reason the owner-approved residence is the right first subject: it can be reshot on the owner's schedule.
