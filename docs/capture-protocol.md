@@ -1,6 +1,6 @@
 # Capture Protocol — phone camera, no LiDAR
 
-**Purpose.** Produce everything `floorplan.json` needs from one visit to a home, using a phone camera, a tape measure, and about ninety minutes. First subject: Apt D. Every later property uses the same protocol, so do it properly once and it becomes muscle memory.
+**Purpose.** Produce everything `floorplan.json` needs from one visit to a home, using a phone camera, a tape measure, and about ninety minutes. First subject: the owner-approved test residence. Every later property uses the same protocol, so do it properly once and it becomes muscle memory.
 
 **Output of one capture session**
 
@@ -95,7 +95,7 @@ Stand at the front door and check:
 4. Render the plan (`npm run plan data/floorplans/<property>.json`) and check it against the sketch: envelope dimensions match, every door swings the right way, every window is on the right wall. Fix and re-render until you would sign it.
 5. Only then open the walkthrough.
 
-## Adapting for Apt D from Zillow photos (before you can shoot)
+## Adapting for the test residence from existing photos (before you can shoot)
 
 Listing photos are the wrong height, wrong lens, and unmeasured, so treat them as a **pre-visit sketch aid only**: use them to draw the section-1 sketch and guess proportions, set `meta.source: "listing"`, `confidence: "rough"`, and record `attribution: "Zillow listing photos, <date>"`. Replace with measured data after the real visit. Never check listing photos into the repo — they're the listing's, not yours.
 

@@ -1,4 +1,4 @@
-import "./apt-d.css";
+import "./property-test.css";
 
 type Photo = { src: string; alt: string };
 type Scene = {
@@ -10,7 +10,7 @@ type Scene = {
   right: Photo;
 };
 
-const photo = (file: string, alt: string): Photo => ({ src: `/apt-d-images/${file}`, alt });
+const photo = (file: string, alt: string): Photo => ({ src: `/property-test-images/${file}`, alt });
 
 const scenes: Scene[] = [
   {
@@ -18,7 +18,7 @@ const scenes: Scene[] = [
     copy: "The widest available look establishes the kitchen, island, entry, windows, and fireplace edge.",
     centerLabel: "Kitchen overview",
     left: photo("hall-to-kitchen.webp", "Hallway looking toward the kitchen"),
-    center: photo("kitchen-wide.webp", "Wide view of Apartment D kitchen and entry"),
+    center: photo("kitchen-wide.webp", "Wide view of the private residence kitchen and entry"),
     right: photo("kitchen-island.webp", "Kitchen island, entry door, and front window"),
   },
   {
@@ -26,7 +26,7 @@ const scenes: Scene[] = [
     copy: "The fireplace image anchors the living area. Kitchen views remain at either side to preserve the relationship between the spaces.",
     centerLabel: "Living-area anchor",
     left: photo("kitchen-wide.webp", "Kitchen viewed from the living area"),
-    center: photo("fireplace.webp", "Apartment D fireplace and living-room floor"),
+    center: photo("fireplace.webp", "Private residence fireplace and living-room floor"),
     right: photo("kitchen-island.webp", "Kitchen island beside the living area"),
   },
   {
@@ -49,7 +49,7 @@ const scenes: Scene[] = [
 
 function required<T extends Element>(selector: string): T {
   const element = document.querySelector<T>(selector);
-  if (!element) throw new Error(`Apartment D photo-turn is missing ${selector}.`);
+  if (!element) throw new Error(`Private-residence photo-turn is missing ${selector}.`);
   return element;
 }
 
@@ -123,7 +123,7 @@ const mapCopy = document.querySelector<HTMLElement>("#map-copy");
 
 const mapStates = [
   ["From the room", "Pull above the property.", "The supplied photographs end at the walls. The map begins as an honest change of source."],
-  ["Property view", "Find Apartment D in place.", "The approved test address supplies location context without making a listing or availability claim."],
+  ["Property view", "Find the test area in place.", "The approximate street supplies location context while the exact residence remains withheld."],
   ["Neighborhood view", "Continue into Everett.", "This locator proves the handoff. A later Cesium build can turn it into one continuous terrain flight."],
 ] as const;
 

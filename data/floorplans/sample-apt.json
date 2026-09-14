@@ -11,7 +11,7 @@
     "confidence": "rough",
     "captured": "2026-09-02",
     "author": "Shannon",
-    "notes": "Placeholder geometry. Walls are drawn on centerlines and space polygons follow the centerlines too, so areas read ~3% high. Replace with the Apt D measured plan once the capture protocol has been run."
+    "notes": "Placeholder geometry. Walls are drawn on centerlines and space polygons follow the centerlines too, so areas read ~3% high. Replace with the owner-approved test residence plan once the capture protocol has been run."
   },
   "levels": [
     {
