@@ -43,7 +43,8 @@ Two ingest tiers feed one viewer:
 
 The tiers differ at **ingest** and at **fidelity**. They do not differ at the viewer —
 that is the whole point, and it is why the navigation model had to be one that Tier A
-can also satisfy. See `navigation.md`.
+can also satisfy: free orbit outside, guided stops inside. That is what `src/scene/explore.ts`
+implements, and free-walk-anywhere was ruled out precisely because Tier A cannot support it.
 
 ## Offer 2 — The 360° Tour (fast tier)
 
@@ -54,7 +55,8 @@ of it.
 - **Viewer**: Photo Sphere Viewer — MIT, and built on Three.js, so it is a second camera
   rig inside the scene graph this repo already has rather than a bolted-on widget. Its
   virtual-tour plugin does hotspot navigation out of the box.
-- **Capture**: Insta360 X4 bundle, ~$485 one-time (camera, invisible stick, tripod).
+- **Capture**: no fixed hardware cost. Either a phone with a stitcher we write, or a
+  budget dual-fisheye camera around $200-300. See [`panorama-pipeline.md`](panorama-pipeline.md).
 - **Running cost**: ~$1.25/mo for one agent, ~$25/mo at ten. Prototyping is free.
 - **Known limit**: a panorama has no parallax, so the camera cannot translate. Panoramas
   are stop-and-look moments. Anything that needs to *move* belongs to Offer 1.
@@ -77,7 +79,12 @@ Offer 2 therefore does not compete on the panorama. It competes on everything ar
 her brand, her compliance block, her domain — and on sitting one click from Offer 1.
 Price and position it accordingly.
 
-Full cost model and scenarios: `_archive/2026-09-source/extracted/tourstack.txt`.
+Build spec for the owned version: [`panorama-pipeline.md`](panorama-pipeline.md) —
+two capture paths, what stays ours either way, and why the plan-linked graph is
+the part no embed can copy.
+
+Full cost model and scenarios: `_archive/2026-09-source/extracted/tourstack.txt`
+(read it with the $485 camera assumption removed).
 
 ## What the two share
 
