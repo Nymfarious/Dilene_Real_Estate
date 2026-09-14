@@ -15,5 +15,6 @@ The documents that define this project. Read in this order the first time.
 | [`mantis.md`](mantis.md) | The report button: what it captures, how it delivers, how to switch on live delivery. |
 | [`session-artifacts.md`](session-artifacts.md) | How chat-session thinking reaches this repo, and the register that keeps it honest. |
 | [`panorama-pipeline.md`](panorama-pipeline.md) | 360° tours from a phone or a budget dual-fisheye: capture, stitch, ingest, and the plan-linked graph. |
+| [`executable-phased-spec.md`](executable-phased-spec.md) | Recommended execution order: tested Matterport product first, then operator workflow, WebMCP, and the owned premium tour track. |
 
 Changing a convention means changing the doc first, then the code. If a doc and the code disagree, the doc wins and the code is a bug.
