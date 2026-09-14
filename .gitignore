@@ -23,3 +23,4 @@ _INBOX D/*
 # agent skills: restore with `npx skills add` from skills-lock.json
 .agents/
 .claude/skills/
+.vercel

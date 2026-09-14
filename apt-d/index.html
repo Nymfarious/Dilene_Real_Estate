@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apartment D — Photo-Turn Test</title>
+  <meta name="description" content="A non-live, scroll-driven Apartment D photo-turn and map test for Dilene Realty Group.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+</head>
+<body>
+  <div class="test-notice">Non-live test · Apartment D · Photo-turn concept, not a 360 scan</div>
+
+  <header class="site-nav">
+    <a class="brand" href="/apt-d/" aria-label="Apartment D test home">
+      <span>Dilene Realty Group</span>
+      <small>Empowering You Through Real Estate</small>
+    </a>
+    <nav aria-label="Test experiences">
+      <a href="/">Sample 3D</a>
+      <a href="#photo-tour">Photo tour</a>
+      <a href="#location">Map view</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-wash" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Apartment D · Everett, Washington</p>
+        <h1 id="hero-title">Turn through the rooms.<br><em>Then pull away.</em></h1>
+        <p class="lede">Eight real listing photographs arranged as neighboring looks. Scroll to turn through the home, then continue upward to the property map.</p>
+        <a class="start" href="#photo-tour">Enter the photo-turn <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="hero-truth">Test address approved by the owner · No listing, pricing, or availability claim</p>
+    </section>
+
+    <section class="turn-sequence" id="photo-tour" aria-label="Apartment D photo-turn">
+      <div class="turn-stage">
+        <div class="stage-heading">
+          <div>
+            <p class="eyebrow">Photo-turn test</p>
+            <h2 id="scene-title">Kitchen &amp; entry</h2>
+          </div>
+          <p class="scene-count"><span id="scene-number">01</span> / 04</p>
+        </div>
+
+        <div class="photo-arc" id="photo-arc" aria-live="polite">
+          <figure class="photo-panel photo-panel-left">
+            <img id="photo-left" src="/apt-d-images/hall-to-kitchen.webp" alt="Hallway looking toward the kitchen">
+            <figcaption>Turn left</figcaption>
+          </figure>
+          <figure class="photo-panel photo-panel-center">
+            <img id="photo-center" src="/apt-d-images/kitchen-wide.webp" alt="Wide view of Apartment D kitchen">
+            <figcaption id="center-label">Current view</figcaption>
+          </figure>
+          <figure class="photo-panel photo-panel-right">
+            <img id="photo-right" src="/apt-d-images/kitchen-island.webp" alt="Kitchen island and entry door">
+            <figcaption>Turn right</figcaption>
+          </figure>
+        </div>
+
+        <div class="scene-footer">
+          <p id="scene-copy">The widest available look establishes the kitchen, island, entry, windows, and fireplace edge.</p>
+          <div class="scene-controls" aria-label="Photo stops">
+            <button id="previous-scene" type="button" aria-label="Previous photo stop">←</button>
+            <div class="scene-dots" id="scene-dots"></div>
+            <button id="next-scene" type="button" aria-label="Next photo stop">→</button>
+          </div>
+        </div>
+        <p class="scroll-cue">Keep scrolling to turn · the side photographs are adjacent looks, not stitched pixels</p>
+      </div>
+    </section>
+
+    <section class="method" aria-labelledby="method-title">
+      <p class="eyebrow">What is real here</p>
+      <h2 id="method-title">A navigable photo study, without pretending it is a scan.</h2>
+      <div class="method-grid">
+        <p><strong>Real photographs.</strong> These are the Apt D images supplied for this private test.</p>
+        <p><strong>Inferred sequence.</strong> Doorways, finishes, and sight lines suggest the order; dimensions remain unknown.</p>
+        <p><strong>Replaceable layer.</strong> A Matterport link or properly captured panoramas can occupy this same route later.</p>
+      </div>
+    </section>
+
+    <section class="map-sequence" id="location" aria-label="Property map pull-away">
+      <div class="map-stage">
+        <div class="map-frame" id="map-frame">
+          <iframe
+            title="Overhead map of the Apartment D test address"
+            src="https://maps.google.com/maps?q=7809%20Timber%20Hill%20Drive%2C%20Everett%2C%20WA%2098203&amp;t=k&amp;z=17&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            tabindex="-1"></iframe>
+          <div class="map-shade" aria-hidden="true"></div>
+        </div>
+        <div class="map-copy">
+          <p class="eyebrow" id="map-eyebrow">From the room</p>
+          <h2 id="map-title">Pull above the property.</h2>
+          <p id="map-copy">The test ends in a real overhead locator. A later Cesium pass can make this a continuous terrain flight instead of a handoff.</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=7809%20Timber%20Hill%20Drive%2C%20Everett%2C%20WA%2098203" target="_blank" rel="noopener">Open the location in Maps ↗</a>
+        </div>
+        <div class="map-levels" aria-hidden="true"><span>Door</span><span>Property</span><span>Neighborhood</span></div>
+        <p class="map-truth">Overhead imagery provided by Google Maps · Address shown for owner-approved testing only</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Dilene Realty Group · eXp Realty</p>
+    <p>This prototype is not a public listing and makes no claim about availability, measurements, or price.</p>
+    <a href="/">Return to the sample 3D concept</a>
+  </footer>
+
+  <script type="module" src="/src/apt-d-page.ts"></script>
+</body>
+</html>
